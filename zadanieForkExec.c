@@ -12,30 +12,30 @@ void main(int argc, char **argv){
         args[i - 1] = atoi(argv[i]);
     }
     
-    for(int i = 0; i < args[0]; i++){
-            printf("Macierzysty krok %d\n",i);
-            sleep(1);
-    }
-    
-    
     for(int i = 0; i < argc - 2; i++){//jak wiele procesow chce utworzyc
         if((pid = fork()) == 0){
+            char str[12];
+            sprintf(str, "%d", getpid());
 
-            for(int y = 0; y < args[i + 1]; y++){
-                printf("Krok %d procesu %d \n", y, getpid());
-            } 
-            exit(getpid());
-        }
-        
+            execl("./potEx", "potEx", str, argv[i + 2], (char*) NULL);
+            
 
-        pid = wait(&status);
-        
-        printf("Proces %d zostal zakonczony, status  %d \n", pid, WEXITSTATUS(status));
-            
-            
+        }        
+   
     }
 
+    for(int i = 0; i < atoi(argv[1]); i++){
+            printf("Macierzysty krok %d\n",i);
+            sleep(1);
+    }    
 
+    for(int i = 0; i < argc - 2; i++){
+        
+        pid = wait(&status);
+        
+        printf("Proces %d zostal zakonczony, status  %d \n", pid, WEXITSTATUS(status));           
+         
+    }
 
 
 }

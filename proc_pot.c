@@ -4,8 +4,8 @@
 
 int main(int argc, char const **argv)
 {
-    for(int i = 0; i < atoi(argv[1]); i++ ){
-        printf("Potomny proces %d, krok %d \n", getpid(), i);
+    for(int i = 0; i < atoi(argv[2]); i++ ){
+        printf("Potomny proces %d, krok %d \n", atoi(argv[1]), i);
         sleep(1);
     }
 
