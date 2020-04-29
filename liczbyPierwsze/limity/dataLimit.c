@@ -21,7 +21,6 @@ int main(int argc, char const *argv[])
     setrlimit(RLIMIT_DATA,&rl);
     printf("DATA %ld %ld \n",rl.rlim_cur, rl.rlim_max);
     stack();
-    
     return 0;
     
 }
